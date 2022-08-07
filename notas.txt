@@ -1,0 +1,13 @@
+referencia docker azure: https://technologyredirect.blogspot.com/2020/09/deploy-fastapi-docker-image-in-azure.html?m=1
+
+en local:
+
+sudo docker-compose up -d
+
+en azure:
+
+sudo docker login registrate.azurecr.io (descargar token o usar user y pass del container regist)
+
+sudo docker build -t registrate.azurecr.io/api_tul_core_api:latest .
+
+sudo docker push registrate.azurecr.io/api_tul_core_api:latest
