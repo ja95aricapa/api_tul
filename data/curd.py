@@ -5,7 +5,7 @@ from tensorflow import keras
 
 
 def get_info():
-    list_name = ["ej_1/data/images.pickle", "ej_1/data/labels.pickle", "ej_1/data/model.pickle"]
+    list_name = ["data/images.pickle", "data/labels.pickle", "data/model.pickle"]
     list_obj = []
     for name in list_name:
         with open(name, "rb") as f:
