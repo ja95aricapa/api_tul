@@ -36,10 +36,10 @@ def get_prediction(index: int, check_all: bool):
         return JSONResponse(
             status_code=status.HTTP_424_FAILED_DEPENDENCY, content={"error": e.detail}
         )
-    finally:
-        list_name = ['data/images.pickle', "data/labels.pickle", "data/model.pickle"]
-        for file in list_name:
-            os.remove(f"{file}")
+    # finally:
+    #     list_name = ['data/images.pickle', "data/labels.pickle", "data/model.pickle"]
+    #     for file in list_name:
+    #         os.remove(f"{file}")
 
 
 def show_image(i: int, images, labels):
