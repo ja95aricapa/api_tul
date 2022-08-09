@@ -11,3 +11,12 @@ sudo docker login registrate.azurecr.io (descargar token o usar user y pass del 
 sudo docker build -t registrate.azurecr.io/api_tul_core_api:latest .
 
 sudo docker push registrate.azurecr.io/api_tul_core_api:latest
+
+en google cloud:
+
+gcloud auth configure-docker
+
+docker tag api_tul_core_api:latest gcr.io/serious-conduit-329515/api-tul-image:tag1
+
+docker push gcr.io/serious-conduit-329515/api-tul-image:tag1
+

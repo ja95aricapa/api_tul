@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 from tensorflow import keras
 
 
-def get_prediction(index: int, check_all: bool):
+def get_prediction(index: int, check_all: bool, check_eval: bool):
     try:
         index = int(index)
         # load data and labels
@@ -31,15 +31,23 @@ def get_prediction(index: int, check_all: bool):
         # make prediction
         predictions = make_prediction(index, model, test_images, check_all)
         # send info to client
-        return predictions
+        if check_eval:
+            json_to_show = {
+                "predictions": predictions,
+                "test_loss": test_loss,
+                "test_acc": test_acc,
+            }
+        else:
+            json_to_show = {
+                "predictions": predictions,
+            }
+        return JSONResponse(
+            status_code=status.HTTP_200_OK, content=json_to_show
+        )
     except HTTPException as e:
         return JSONResponse(
             status_code=status.HTTP_424_FAILED_DEPENDENCY, content={"error": e.detail}
         )
-    # finally:
-    #     list_name = ['data/images.pickle', "data/labels.pickle", "data/model.pickle"]
-    #     for file in list_name:
-    #         os.remove(f"{file}")
 
 
 def show_image(i: int, images, labels):
